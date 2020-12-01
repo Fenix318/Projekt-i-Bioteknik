@@ -136,8 +136,9 @@ for j = 1
 end
 
 %% %% neighbours
+If 1<x<27 && 1<y<27
 [x,y]= size(N);
-pos1 = a(x-1,y-1);
+pos1 = N(x-1,y-1);
 pos2 = N(x-1,y);
 pos3 = N(x-1,y+1);
 pos4 = N(x,y-1);
@@ -146,6 +147,8 @@ pos6 = N(x+1,y-1);
 pos7 = N(x+1,y);
 pos8 = N(x+1,y+1);
 pos9 =  N(x,y); 
+else
+end
 q = [0,0.001,1]; 
 % function pos = neighbours(a,x,y)
 % pos= [pos1,pos2,pos3,pos4,pos5, pos6, pos7, pos8, pos9]; 
