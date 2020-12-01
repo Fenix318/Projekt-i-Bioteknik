@@ -147,7 +147,6 @@ pos6 = N(x+1,y-1);
 pos7 = N(x+1,y);
 pos8 = N(x+1,y+1);
 pos9 =  N(x,y); 
-else
 end
 q = [0,0.001,1]; 
 % function pos = neighbours(a,x,y)
