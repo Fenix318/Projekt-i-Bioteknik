@@ -1,17 +1,33 @@
+clc
+close all
+
+
+
 
 %% This section is for the game itself 
 % This section is for the game itself 
 % setting parameters
-s=10;          %T-cell from precursor supply rate ((mm^3/day)^-1 )
-r=0.03;        %normal T-cell growth rate (day^-1)
-Tmax=1500;     %maximum T-cell population ((mm^3)^-1)
-mu=0.02;       %normal/latently infected T-cell death rate (day^-1)
-beta=0.24;     %actively infected T-cell death rate (day^-1)
-alfa=2.4;      %free virus death rate (day^-1)
-k1=2.4*10^-5;  %T-cell infection rate by free virus (mm^3/day)
-k2=3*10^-3;    %latent-to-active T-cell conversion rate (day^-1)
-N=1400;        %virus produced by an active T-cell (#)
-m=2*10^-3;     %latent-to-normal T-cell conversion rate (day^-1)
+% s=10;          %T-cell from precursor supply rate ((mm^3/day)^-1 )
+% r33=0.03;        %normal T-cell growth rate (day^-1)
+% Tmax=1500;     %maximum T-cell population ((mm^3)^-1)
+% mu=0.02;       %normal/latently infected T-cell death rate (day^-1)
+% beta=0.24;     %actively infected T-cell death rate (day^-1)
+% alfa=2.4;      %free virus death rate (day^-1)
+% k1=2.4*10^-5;  %T-cell infection rate by free virus (mm^3/day)
+% k2=3*10^-3;    %latent-to-active T-cell conversion rate (day^-1)
+% N1=1400;        %virus produced by an active T-cell (#)
+% m1=2*10^-3;     %latent-to-normal T-cell conversion rate (day^-1)
+s=10 %T-cell from precursor supply rate
+r33=;        %normal T-cell growth rate
+Tmax=;     %maximum T-cell population
+mu=;       %normal/latently infected T-cell death rate
+beta=;     %actively infected T-cell death rate
+alfa=;      %free virus death rate
+k1=;  %T-cell infection rate by free virus
+k2=;    %latent-to-active T-cell conversion rate
+N1=;        %virus produced by an active T-cell
+m1=;     %latent-to-normal T-cell conversion rate
+
 % t = 0:1:30;    
 % 
 % % the function/ agents / rules
@@ -81,9 +97,9 @@ N(randperm(numel(N), n4)) = m;
 end
 end
 
-for j=4
-    for n5 = 5
-       N(randperm(numel(N), n5)) = j;
+for j33=4
+    for n5 = 20
+       N(randperm(numel(N), n5)) = j33;
     end
 end
 
@@ -92,34 +108,33 @@ end
 
 
 %% Denna sektion skapar en rad av nollor runt matrisen.
-disp(N)
 [rader, kolumner]=size(N);
 r=6*ones(rader, 1);
 k=6*ones(1,kolumner+2); % +2 f?r att matrisen ska g? ihopp
 % inramad a kallas N
-a=[r,N,r] % r ?r nollramen ovan och under
-a=[k;a;k] % k ?r Nollramens sidor
+a=[r,N,r]; % r ?r nollramen ovan och under
+a=[k;a;k]; % k ?r Nollramens sidor
 
-% CREATE PLOTS
-figure(1)
-hold on
-imagesc(a)
-colormap hot
-colorbar 
+
 % grid
 % i = 0; 
-k = 1;
-l = 2;
-m = 3;
-j = 4;
-n = 0;
+% k = 1;
+% l = 2;
+% m = 3;
+% j33 = 4;
 
+
+
+
+
+q = [0,0.001,1];
+n = 0;
 for n = n+1
 
 % 0->T lymphatic system
 [x1,j1]=find(a==0); %find out the positions of the 2 in the matrix a 
 T=[x1,j1]; %save all the positions in a matrix 
-q1=randsample (1:length(T),s); % randomly extract z positions from TL. This is done by randomly choosing one row from the a matrix
+q1=randsample (length(T),s); % randomly extract z positions from TL. This is done by randomly choosing one row from the a matrix
 subst1=[];
 for i = q1
 Subst1=[subst1;T(i,:)];
@@ -136,19 +151,21 @@ for j = 1
 end
 
 %% %% neighbours
-If 1<x<27 && 1<y<27
-[x,y]= size(N);
-pos1 = N(x-1,y-1);
-pos2 = N(x-1,y);
-pos3 = N(x-1,y+1);
-pos4 = N(x,y-1);
-pos5 = N(x,y+1);
-pos6 = N(x+1,y-1);
-pos7 = N(x+1,y);
-pos8 = N(x+1,y+1);
-pos9 =  N(x,y); 
-end
-q = [0,0.001,1]; 
+[x,y]= size(a);
+
+if 1<x && x<27 && 1<y && y<27
+
+pos1 = a(x-1,y-1);
+pos2 = a(x-1,y);
+pos3 = a(x-1,y+1);
+pos4 = a(x,y-1);
+pos5 = a(x,y+1);
+pos6 = a(x+1,y-1);
+pos7 = a(x+1,y);
+pos8 = a(x+1,y+1);
+pos9 =  a(x,y); 
+
+ 
 % function pos = neighbours(a,x,y)
 % pos= [pos1,pos2,pos3,pos4,pos5, pos6, pos7, pos8, pos9]; 
 
@@ -221,12 +238,14 @@ else
 pos9=1;
 end
 
+end
+
 
 % TL->TA
 [x3,j3]=find(a==2); %find out the positions of the 2 in the matrix a 
 TL=[x3,j3]; %save all the positions in a matrix 
-z=round(size(TL)/2);
-q3=randsample (1:length(TL),z);  % randomly extract z positions from TL. This is done by randomly choosing one row from the a matrix
+z=round(length(TL)/2);
+q3=randsample (length(TL),z);  % randomly extract z positions from TL. This is done by randomly choosing one row from the a matrix
 subst3=[];
 for i =q3
 Subst3=[subst3;TL(i,:)];
@@ -236,8 +255,8 @@ a(sub2ind(size(a),Subst3(:,1),Subst3(:,2))) = 3;
 % TA-> Virus
 [x4,j4]=find(a==3);  %find out the positions of the 2 in the matrix a 
 TA=[x4,j4]; 
-r=round(size(TA)/100);
-q4=randsample (1:length(TA),r); 
+r=round(length(TA)/100);
+q4=randsample (length(TA),r); 
 subst4=[];
 for i=q4
 Subst4=[subst4;TA(i,:)];
@@ -253,28 +272,35 @@ end
 % Virus-> 0
 [x5,j5]=find(a==4);  %find out the positions of the 4 in the matrix a 
 V=[x5,j5];
-r2=round(size(V)/10);  
-q5=randsample (1:length(V),r2); 
+r2=round(length(V)/10);  
+q5=randsample (length(V),r2); 
 subst5=[];
 for i=q5
 Subst5=[subst5;V(i,:)];
 end
 a(sub2ind(size(a),Subst5(:,1),Subst5(:,2)))= 0;
 
-end
 
 % TL-> T
 [x6,j6]=find(a==2);  %find out the positions of the 4 in the matrix a 
 TL1=[x6,j6];
-r3=round(size(TL1)/10);  % Ändra Medicin Term mycket och testa
-q6=randsample (1:length(TL1),r3); 
+r3=round(length(TL1)/10);  % Ändra Medicin Term mycket och testa
+q6=randsample (length(TL1),r3); 
 subst6=[];
 for i=q6
 Subst6=[subst6;TL1(i,:)];
 end
 a(sub2ind(size(a),Subst6(:,1),Subst6(:,2)))= 1;
 
+% CREATE PLOTS
+figure(1)
+hold on
+imagesc(a)
+colormap hot
+colorbar 
 
+
+end
 
 
 % n = neighbors(a,x,y); 
@@ -303,4 +329,3 @@ a(sub2ind(size(a),Subst6(:,1),Subst6(:,2)))= 1;
 %     liv=0;
 % end
 % end
-
