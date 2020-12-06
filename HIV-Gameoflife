@@ -239,7 +239,7 @@ Subst3=[subst3;TL(i,:)];
 end
 a(sub2ind(size(a),Subst3(:,1),Subst3(:,2))) = 3; 
 
-% TA-> Virus
+% TA-> 0
 [x4,j4]=find(a==3);  %find out the positions of the 2 in the matrix a 
 TA=[x4,j4]; 
 r=round(length(TA)/50);
@@ -249,11 +249,12 @@ for i=q4
 Subst4=[subst4;TA(i,:)];
 end
 
-a(sub2ind(size(a),Subst4(:,1),Subst4(:,2))) = 0;  %den dör
+a(sub2ind(size(a),Subst4(:,1),Subst4(:,2))) = 0;  %TL dies(lysis)
 
+% 0->virus
 for j = 4    %virus 
     for e = (r*100)     % ï¿½ndra 100 sen
-       a(randperm(numel(a(2:26 , 2:26)), e)) = j;     %problem: does not take the bounds into account, Detta ska ske när TA dör
+       a(randperm(numel(a(2:26 , 2:26)), e)) = j;     %problem: does not take the bounds into account, this should happen when TL dies
     end
 end
 
