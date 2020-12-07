@@ -115,9 +115,83 @@ a=[k;a;k]; % k ?r Nollramens sidor
 % m = 3;
 % j33 = 4;
 
-q = [0,0.1,1];
+
+q = 1;
 n = 0;
-for n = 1:100  
+for n = 1:100
+    for x = 2:26
+        for y = 2:26
+            
+        l3 = rand(q)    
+            
+     pos1 = a(x-1,y-1);
+pos2 = a(x-1,y);
+pos3 = a(x-1,y+1);
+pos4 = a(x,y-1);
+pos5 = a(x,y+1);
+pos6 = a(x+1,y-1);
+pos7 = a(x+1,y);
+pos8 = a(x+1,y+1);
+pos9 =  a(x,y);
+        if pos9 == 1 && pos1 == 4 && l3>k1    %bestï¿½m k1
+pos9 = 2;
+pos1 = 0;
+else
+pos9 = 1;
+end
+
+
+if pos9 == 1 && pos2 == 4 && l3 >k1
+pos9 = 2;
+pos2 = 0;
+else 
+pos9 = 1;
+end
+
+if pos9 == 1 && pos3 == 4 && l3>k1
+pos9 = 2;
+pos3=0;
+else 
+pos9=1;
+end
+
+if pos9 == 1 && pos4 == 4 && l3>k1
+pos9 = 2;
+pos4=0;
+else 
+pos9=1;
+end
+
+if pos9 == 1 && pos5 == 4 && l3>k1
+pos9 = 2;
+pos5 = 0;
+else 
+pos9=1;
+end
+
+if pos9 == 1 && pos6 == 4 && l3>k1
+pos9 = 2;
+pos6 = 0;
+else 
+pos9=1;
+end
+
+if pos9 == 1 && pos7 == 4 && l3>k1
+pos9 = 2;
+pos7 = 0;
+else 
+pos9=1;
+end
+
+if pos9 == 1 && pos8 == 4 && l3>k1
+pos9 = 2;
+pos8 = 0;
+else 
+pos9=1;
+end
+
+        end
+    end 
 %n
 % 0->T lymphatic system
 [x1,j1]=find(a==0); %find out the positions of the 0 in the matrix a 
@@ -147,19 +221,8 @@ a(sub2ind(size(a),Subst1(:,1),Subst1(:,2)))=1;
 % end
 
 %% %% neighbours
-[x,y]= size(a);
 
-if 1<x && x<27 && 1<y && y<27
 
-pos1 = a(x-1,y-1);
-pos2 = a(x-1,y);
-pos3 = a(x-1,y+1);
-pos4 = a(x,y-1);
-pos5 = a(x,y+1);
-pos6 = a(x+1,y-1);
-pos7 = a(x+1,y);
-pos8 = a(x+1,y+1);
-pos9 =  a(x,y); 
 
  
 % function pos = neighbours(a,x,y)
@@ -170,68 +233,69 @@ pos9 =  a(x,y);
 % function Infect = celldestiny(a,x,y)
 % pos1||pos2||pos3||pos4||pos5||pos6||pos7||pos8=4 &&
 
-if pos9 == 1 && pos1 == 4 && rand(q)>=k1    %bestï¿½m k1
-pos9 = 2;
-pos1 = 0;
-else
-pos9 = 1;
-end
-
-if pos9 == 1 && pos2 == 4 && rand(q) >= k1
-pos9 = 2;
-pos2 = 0;
-else 
-pos9 = 1;
-end
-
-if pos9 == 1 && pos3 == 4 && rand(q)>=k1
-pos9 = 2;
-pos3=0;
-else 
-pos9=1;
-end
-
-if pos9 == 1 && pos4 == 4 && rand(q)>=k1
-pos9 = 2;
-pos4=0;
-else 
-pos9=1;
-end
-
-if pos9 == 1 && pos5 == 4 && rand(q)>=k1
-pos9 = 2;
-pos5 = 0;
-else 
-pos9=1;
-end
-
-if pos9 == 1 && pos6 == 4 && rand(q)>=k1
-pos9 = 2;
-pos6 = 0;
-else 
-pos9=1;
-end
-
-if pos9 == 1 && pos7 == 4 && rand(q)>=k1
-pos9 = 2;
-pos7 = 0;
-else 
-pos9=1;
-end
-
-if pos9 == 1 && pos8 == 4 && rand(q)>=k1
-pos9 = 2;
-pos8 = 0;
-else 
-pos9=1;
-end
-
-end
+% if pos9 == 1 && pos1 == 4 && rand(q)>=k1    %bestï¿½m k1
+% pos9 = 2;
+% pos1 = 0;
+% else
+% pos9 = 1;
+% end
+% 
+% l3 = rand(q)
+% if pos9 == 1 && pos2 == 4 && l3 >= k1
+% pos9 = 2;
+% pos2 = 0;
+% else 
+% pos9 = 1;
+% end
+% 
+% if pos9 == 1 && pos3 == 4 && rand(q)>=k1
+% pos9 = 2;
+% pos3=0;
+% else 
+% pos9=1;
+% end
+% 
+% if pos9 == 1 && pos4 == 4 && rand(q)>=k1
+% pos9 = 2;
+% pos4=0;
+% else 
+% pos9=1;
+% end
+% 
+% if pos9 == 1 && pos5 == 4 && rand(q)>=k1
+% pos9 = 2;
+% pos5 = 0;
+% else 
+% pos9=1;
+% end
+% 
+% if pos9 == 1 && pos6 == 4 && rand(q)>=k1
+% pos9 = 2;
+% pos6 = 0;
+% else 
+% pos9=1;
+% end
+% 
+% if pos9 == 1 && pos7 == 4 && rand(q)>=k1
+% pos9 = 2;
+% pos7 = 0;
+% else 
+% pos9=1;
+% end
+% 
+% if pos9 == 1 && pos8 == 4 && rand(q)>=k1
+% pos9 = 2;
+% pos8 = 0;
+% else 
+% pos9=1;
+% end
+% 
+% end
 
 % TL->TA
 [x3,j3]=find(a==2); %find out the positions of the 2 in the matrix a 
 TL=[x3,j3]; %save all the positions in a matrix 
-z=round(length(TL)/100);
+z=round(length(TL)/10000);
 q3=randsample (length(TL(:,1)),z);  % randomly extract z positions from TL. This is done by randomly choosing one row from the a matrix
 subst3=[];
 for i =q3
@@ -242,7 +306,7 @@ a(sub2ind(size(a),Subst3(:,1),Subst3(:,2))) = 3;
 % TA-> 0
 [x4,j4]=find(a==3);  %find out the positions of the 2 in the matrix a 
 TA=[x4,j4]; 
-r=round(length(TA)/50);
+r=round(length(TA)/5);
 q4=randsample (length(TA),r); 
 subst4=[];
 for i=q4
@@ -273,7 +337,7 @@ a(sub2ind(size(a),Subst5(:,1),Subst5(:,2)))= 0;
 % TL-> T
 [x6,j6]=find(a==2);  %find out the positions of the 4 in the matrix a 
 TL1=[x6,j6];
-r3=round(length(TL1)/10);  % ï¿½ndra Medicin Term mycket och testa
+r3=round(length(TL1)/100000);  % ï¿½ndra Medicin Term mycket och testa
 q6=randsample (length(TL1),r3); 
 subst6=[];
 for i=q6
