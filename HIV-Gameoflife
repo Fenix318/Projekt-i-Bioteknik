@@ -135,56 +135,56 @@ pos8 = a(x+1,y+1);
 pos9 =  a(x,y);
        
 if pos9 == 1 && pos1 == 4 && l3>=k1    %bestï¿½m k1
-pos9 = 2;
-pos1 = 0;
+a(x,y) = 2
+a(x-1,y-1) = 0;
 
 end
 
 
 if pos9 == 1 && pos2 == 4 && l3 >=k1
-pos9 = 2;
-pos2 = 0;
+a(x,y) = 2;
+a(x-1,y) = 0;
 
 end
 
 if pos9 == 1 && pos3 == 4 && l3>=k1
-pos9 = 2;
-pos3=0;
+a(x,y) = 2;
+a(x-1,y+1)=0;
 
 end
 
 if pos9 == 1 && pos4 == 4 && l3>=k1
-pos9 = 2;
-pos4=0;
+a(x,y) = 2;
+a(x,y-1)=0;
 
 end
 
 if pos9 == 1 && pos5 == 4 && l3>=k1
-pos9 = 2;
-pos5 = 0;
+a(x,y) = 2;
+a(x,y+1) = 0;
 
 end
 
 if pos9 == 1 && pos6 == 4 && l3>=k1
-pos9 = 2;
-pos6 = 0;
+a(x,y) = 2;
+a(x+1,y-1) = 0;
 
 end
 
 if pos9 == 1 && pos7 == 4 && l3>=k1
-pos9 = 2;
-pos7 = 0;
+a(x,y) = 2;
+a(x+1,y) = 0;
 
 end
 
 if pos9 == 1 && pos8 == 4 && l3>=k1
-pos9 = 2;
-pos8 = 0;
+a(x,y) = 2;
+a(x+1,y+1) = 0;
 
 end
 
-        end
-    end 
+end
+end 
 %n
 % 0->T lymphatic system
 [x1,j1]=find(a==0); %find out the positions of the 0 in the matrix a 
@@ -299,7 +299,7 @@ a(sub2ind(size(a),Subst3(:,1),Subst3(:,2))) = 3;
 % TA-> 0
 [x4,j4]=find(a==3);  %find out the positions of the 2 in the matrix a 
 TA=[x4,j4]; 
-r=round(length(TA)/50);   % ändra /50 för stor impact på virus produktion
+r=round(length(TA)/5);   % ändra /50 för stor impact på virus produktion
 q4=randsample (length(TA),r); 
 subst4=[];
 for i=q4
@@ -346,7 +346,7 @@ a(sub2ind(size(a),Subst5(:,1),Subst5(:,2)))= 0;
 
 
 %Medication
-% TL-> T
+%TL-> T
 [x6,j6]=find(a==2);  %find out the positions of the 4 in the matrix a 
 TL1=[x6,j6];
 r3=round(length(TL1)/100000);  % ï¿½ndra Medicin Term mycket och testa
