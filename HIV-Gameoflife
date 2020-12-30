@@ -23,7 +23,7 @@ alfa=0.01;      %free virus death rate
 k1=0.7;  %T-cell infection rate by free virus
 k2=0.02;    %latent-to-active T-cell conversion rate
 N1=10;        %virus produced by an active T-cell
-m1=0.1;     %latent-to-normal T-cell conversion rate
+m1=0;     %latent-to-normal T-cell conversion rate
 
 % t = 0:1:30;    
 % the function/ agents / rules
@@ -106,7 +106,10 @@ k=6*ones(1,kolumner+2); % +2 f?r att matrisen ska g? ihopp
 % inramad a kallas N
 a=[r,N,r]; % r ?r nollramen ovan och under
 a=[k;a;k]; % k ?r Nollramens sidor
-
+V1=[];
+V2=[];
+V3=[];
+V4=[];
 q = 1;
 counter = 1;
 for n = 1:100
@@ -182,16 +185,20 @@ Subst1=[subst1;T(i,:)];  % 0->1
 end
 a(sub2ind(size(a),Subst1(:,1),Subst1(:,2)))=1;   
 % 
+
 % Growthrate
-[x2,j2]=find(a==0);
+[x2,j2]=find(a==1);
+[x9,j9]=find(a==0);
 T7=[x2,j2];
-n5 =round(length(T7)*r33);     %%%%%%%%%0.03 growthrate
-q7=randsample(length(T7(:,1)),n5);   % randomly extract z positions from TL. This is done by randomly choosing one row from the a matrix
+T9=[x9,j9];
+n7 =round(length(T7)*r33);     %%%%%%%%%0.03 growthrate
+q7=randsample(length(T9(:,1)),n7);   % randomly extract z positions from TL. This is done by randomly choosing one row from the a matrix
 subst7=[];
 for i = q7
-Subst7=[subst7;T7(i,:)];  % 0->1
+Subst7=[subst7;T9(i,:)];  % 0->1
 end
 a(sub2ind(size(a),Subst7(:,1),Subst7(:,2)))=1; 
+
 
 % for j = 1
 %     for n5 =round((size(T))*0.03)
@@ -272,9 +279,40 @@ colorbar
 % plot(n,r69);
 
 counter = counter + 1;
+
+virus=sum(a==4,'all');
+if virus >= 1600* 0.5
+    break
+elseif virus <= 1600* 0.01
+    break
 end
 
 
+v1= sum(a==1,'all');  %calculate the number of agents on the grid
+V1=[V1 v1];
+v2= sum(a==2,'all'); 
+V2=[V2 v2];
+v3= sum(a==3,'all'); 
+V3=[V3 v3];
+v4= sum(a==4,'all'); 
+V4=[V4 v4];
+
+figure (2)
+subplot (2,2,1)
+plot (V1);
+
+subplot (2,2,2)
+plot (V2);
+
+subplot (2,2,3)
+plot (V3);
+
+subplot (2,2,4)
+plot (V4);
+
+end
+
+disp(counter)
 % n = neighbors(a,x,y); 
 % % if n = n5;
 %     1 = 1*k1;
@@ -301,3 +339,4 @@ end
 %     liv=0;
 % end
 % end
+
