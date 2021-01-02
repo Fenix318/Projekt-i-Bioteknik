@@ -3,16 +3,46 @@ close all
 
 %%  Setting parameters
 
-s=1;              %T-cell from precursor supply rate ((mm^3/day)^-1 )
-R= 0.01;        %normal T-cell growth rate (day^-1)
-Tmax=1500;        %maximum T-cell population ((mm^3)^-1)
-mu=0.02;          %normal/latently infected T-cell death rate (day^-1)
-beta=0.05;      %actively infected T-cell death rate (day^-1)
-alfa=0.01;      %free virus death rate (day^-1)
-k1=0.7;         %T-cell infection rate by free virus (mm^3/day) 2.4*10^-5
-k2=0.02;        %latent-to-active T-cell conversion rate (day^-1)
-N1=10;          %virus produced by an active T-cell (#)
-m1=0;         %latent-to-normal T-cell conversion rate (day^-1)
+s=1;              % T-cell from precursor supply rate ((mm^3/day)^-1 )
+R= 0.01;          % normal T-cell growth rate (day^-1)
+Tmax=1500;        % maximum T-cell population ((mm^3)^-1)
+mu=0.02;          % normal/latently infected T-cell death rate (day^-1)
+beta=0.05;        % actively infected T-cell death rate (day^-1)
+alfa=0.01;        % free virus death rate (day^-1)
+k1=0.7;           % T-cell infection rate by free virus (mm^3/day) 2.4*10^-5
+k2=0.02;          % latent-to-active T-cell conversion rate (day^-1)
+N1=10;            % virus produced by an active T-cell (#)
+% Case 1: patient dies due to no treatment
+%m1=0.0;           % latent-to-normal T-cell conversion rate (day^-1)
+%% Low probability of recovery 
+%case 2: 
+m1=0.01;
+%case 3
+%m1=0.02
+%case4:
+%m1=0.03
+%case5:
+%m1=0.04
+%case6:
+%m1=0.05
+% Case 7: threshold between death and recovery (0.05_0.07)
+%m1=0.06;          % latent-to-normal T-cell conversion rate (day^-1)
+%case 8
+%m1=0.07
+%case 9
+%m1=0.08
+%case10
+%m1=0.09
+%% high probability of recovery 
+% Case 9 : high probability of recovery
+%m1=0.1;          % latent-to-normal T-cell conversion rate (day^-1)
+%case 11
+%m1=0.15
+%case 12
+%m1=0.2
+
+
+
 
 %% Create a transection of a blood vessel
 
@@ -100,42 +130,42 @@ a(x,y) = 2;
 a(x-1,y-1) = 0;
 end
 
-if pos9 == 1 && pos2 == 4 && l3>=k1
+if pos9 == 1 && pos2 == 4 && l3 >= k1
 a(x,y) = 2;
 a(x-1,y) = 0;
 
 end
 
-if pos9 == 1 && pos3 == 4 && l3>=k1
+if pos9 == 1 && pos3 == 4 && l3 >= k1
 a(x,y) = 2;
 a(x-1,y+1)=0;
 
 end
 
-if pos9 == 1 && pos4 == 4 && l3>=k1
+if pos9 == 1 && pos4 == 4 && l3 >= k1
 a(x,y) = 2;
 a(x,y-1)=0;
 
 end
 
-if pos9 == 1 && pos5 == 4 && l3>=k1
+if pos9 == 1 && pos5 == 4 && l3 >= k1
 a(x,y) = 2;
 a(x,y+1) = 0;
 
 end
  
-if pos9 == 1 && pos6 == 4 && l3>=k1
+if pos9 == 1 && pos6 == 4 && l3 >= k1
 a(x,y) = 2;
 a(x+1,y-1) = 0;
 
 end
 
-if pos9 == 1 && pos7 == 4 && l3>=k1
+if pos9 == 1 && pos7 == 4 && l3 >= k1
 a(x,y) = 2;
 a(x+1,y) = 0;
 end
 
-if pos9 == 1 && pos8 == 4 && l3>=k1
+if pos9 == 1 && pos8 == 4 && l3 >= k1
 a(x,y) = 2;
 a(x+1,y+1) = 0;
 
@@ -238,7 +268,7 @@ virus=sum(a==4,'all');
 if virus >= 1600* 0.5
     disp 'DEAD';
     break  
-elseif virus <= 1600* 0.01
+elseif virus <= 1600* 0.01     % undetectable level is reached 
     disp 'Recovered';
     break
 end
@@ -284,4 +314,5 @@ ylabel('Number of cells')
 end
 
 disp(counter)   % displays the number of iterations
+disp (counter/12) % displays the number of years 
 
